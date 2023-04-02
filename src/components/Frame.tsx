@@ -40,7 +40,7 @@ export default function Frame() {
   function fetchForecastData(lat: number, long: number) {
     axios
       .get(
-        `http://api.weatherapi.com/v1/forecast.json?key=eea7fd6ff63e4602977155650230104&q=${lat},${long}&days=7`
+        `https://api.weatherapi.com/v1/forecast.json?key=eea7fd6ff63e4602977155650230104&q=${lat},${long}&days=7`
       )
       .then((response) => {
         let week_data: Array<any> = response.data.forecast["forecastday"].map(
