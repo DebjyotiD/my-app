@@ -8,7 +8,7 @@ export default function Frame() {
   const [err, setErr] = useState<string>("");
   const [icon, setIcon] = useState<string>("");
   const [cond, setCond] = useState<string>();
-  const [next,setNext] = useState<string[]>();
+  //const [next,setNext] = useState<string[]>();
   const showResponse = async (location: string, forecast: string) => {
     setLoc(location);
     setTemp(forecast);
