@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-
 export default function Frame() {
   const [loc, setLoc] = useState<string>();
   const [temp, setTemp] = useState<string>();
@@ -11,7 +10,12 @@ export default function Frame() {
   const [next, setNext] = useState<any[]>([]);
   const [isloading, setIsLoading] = useState<boolean>(false);
 
-  const showResponse = async (location: string, forecast: string, icon  : string, cond : string) => {
+  const showResponse = async (
+    location: string,
+    forecast: string,
+    icon: string,
+    cond: string
+  ) => {
     setLoc(location);
     setTemp(forecast);
     setIcon(icon);
@@ -32,8 +36,8 @@ export default function Frame() {
         .then((response) => {
           const location: string = response.data.location.name;
           const forecast: string = response.data.current.temp_c;
-          const icon: string = (response.data.current.condition.icon);
-          const cond  :string = (response.data.current.condition.text);
+          const icon: string = response.data.current.condition.icon;
+          const cond: string = response.data.current.condition.text;
           showResponse(location, forecast, icon, cond);
         })
         .catch((error) => {
@@ -56,6 +60,7 @@ export default function Frame() {
               icon: item.day.condition.icon,
               humidity: item.day.avghumidity,
               maxwind: item.day.maxwind_kph,
+              condition : item.day.condition.text
             };
           }
         );
@@ -76,9 +81,7 @@ export default function Frame() {
   const isLoadingHandler = () => {
     setIsLoading(false);
 
-   setNext([]);
-    
-
+    setNext([]);
   };
 
   let message = (
@@ -106,22 +109,29 @@ export default function Frame() {
       )}
       <div>
         {next.map((item) => (
-          <div className="flex rounded-lg border-solid border-2 shadow-md border-sky-500 my-5">
-            <img src={item.icon} alt="" />
-            <div className="flex-auto">
-              <p className="font-mono text-base my-8 mb-4 md:w-50% text-3xl">
-                {item["avgtemp"]}°C
-              </p>
-            </div>
-            <div className="flex p-1">
-              <p className="font-mono text-base my-7 mx-2">{item["date"]}</p>
-              <div className="p-4">
-                <p className="font-mono text-base mx-14">
-                  Humidity:{item["humidity"]}%
+          <div>
+            <p className="font-mono text-base text-3xl w-full">
+             Forecast on {item["date"]} :
+            </p>
+            <div className="flex rounded-lg border-solid border-2 shadow-md border-sky-500 my-5">
+              <img src={item.icon} alt="" className="w-20 h-24 my-6" />
+              <div className="flex-auto">
+                <p className="font-mono text-base my-12 text-4xl">
+                  {item["avgtemp"]}°C
                 </p>
-                <p className="font-mono text-base ">
-                  Maximum Wind Speed: {item["maxwind"]} kmph
-                </p>
+              </div>
+              <div className="flex ">
+                <div className="p-5">
+                  <p className="font-mono text-base mx-7">
+                    It Will Be {item["condition"]} Outside
+                  </p>
+                  <p className="font-mono text-base my-3 mx-20">
+                    Humidity:{item["humidity"]}%
+                  </p>
+                  <p className="font-mono text-base my-3">
+                    Maximum Wind Speed: {item["maxwind"]} kmph
+                  </p>
+                </div>
               </div>
             </div>
           </div>
