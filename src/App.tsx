@@ -4,7 +4,6 @@ import Frame from "./components/Frame";
 import Time from "./components/Time";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 function App() {
