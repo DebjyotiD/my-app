@@ -10,7 +10,6 @@ export default function Frame() {
   const [cond, setCond] = useState<string>();
   const [next, setNext] = useState<any[]>([]);
   const [isloading, setIsLoading] = useState<boolean>(false);
-  const [isdisable,setIsDisable] = useState<number>(1);
 
   const showResponse = async (location: string, forecast: string, icon  : string, cond : string) => {
     setLoc(location);
@@ -67,7 +66,6 @@ export default function Frame() {
   }
   const forecastHandler = () => {
     setIsLoading(true);
-    setIsDisable(1);
     navigator.geolocation.getCurrentPosition((position) => {
       const lat: number = position.coords.latitude;
       const long: number = position.coords.longitude;
@@ -78,9 +76,9 @@ export default function Frame() {
   const isLoadingHandler = () => {
     setIsLoading(false);
 
-   // setIcon("");
-   // setNext([]);
-    setIsDisable(0);
+   setIcon("");
+   setNext([]);
+    
 
   };
 
@@ -107,7 +105,7 @@ export default function Frame() {
           Close The Forecast
         </button>
       )}
-      <div style={{opacity:`${isdisable}`}} className="pointer-events-none">
+      <div>
         {next.map((item) => (
           <div className="flex rounded-lg border-solid border-2 shadow-md border-sky-500 my-5">
             <img src={item.icon} alt="" />
