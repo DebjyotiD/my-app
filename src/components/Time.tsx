@@ -9,7 +9,7 @@ function Time() {
     };
   }, []);
   return (
-    <div>
+    <div className="flex justify-center">
       <p className="text-2xl oldstyle-nums subpixel-antialiased lining-nums my-10">
         {time.toLocaleTimeString()}
       </p>
