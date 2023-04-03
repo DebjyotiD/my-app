@@ -76,7 +76,6 @@ export default function Frame() {
   const isLoadingHandler = () => {
     setIsLoading(false);
 
-   setIcon("");
    setNext([]);
     
 
