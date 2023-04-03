@@ -116,7 +116,7 @@ export default function Frame() {
             <div className="flex rounded-lg border-solid border-2 shadow-md border-sky-500 my-5">
               <img src={item.icon} alt="" className="w-20 h-24 my-6" />
               <div className="flex-auto">
-                <p className="font-mono text-base my-12 text-5xl">
+                <p className="font-mono text-base my-12 text-4xl">
                   {item["avgtemp"]}°C
                 </p>
               </div>
