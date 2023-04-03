@@ -77,9 +77,11 @@ export default function Frame() {
 
   const isLoadingHandler = () => {
     setIsLoading(false);
+
    // setIcon("");
    // setNext([]);
     setIsDisable(0);
+
   };
 
   let message = (
