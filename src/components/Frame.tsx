@@ -113,7 +113,7 @@ export default function Frame() {
       )}
       <div>
         {next.map((item) => (
-          <div key={item["key"]}>
+          <div key={item["key"]} className="">
             <p className="font-mono text-base text-3xl w-full">
              Forecast on {item["date"]} :
             </p>

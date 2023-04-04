@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div>
+    <div style={{userSelect:"none"}}>
       <div className="fixed bottom-0 right-0 bg-gray-100 py-2 px-2 rounded-lg">
         <p className="text-center text-gray-500">
           A mini project by Debjyoti Das Ghosh
