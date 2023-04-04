@@ -87,9 +87,9 @@ export default function Frame() {
   };
 
   let message = (
-    <div className="grid justify-items-center">
-      <img src={icon} alt="" />
-      <p className="font-mono text-base my-5 mb-5">
+    <div className="grid justify-items-center" style={{userSelect:"none"}}>
+      <img src={icon} alt="" style={{userSelect:"none"}}/>
+      <p className="font-mono text-base my-5 mb-5" style={{pointerEvents:"none", userSelect:"none"}}>
         Hey, its {cond} out there. Your Location is {loc} and Temperature is{" "}
         {temp}°C
       </p>
@@ -97,6 +97,7 @@ export default function Frame() {
         <button
           className="rounded-full bg-sky-500/75 hover:bg-sky-500/100 px-5 py-3 my-5"
           onClick={forecastHandler}
+          style={{userSelect:"none"}}
         >
           See Next 7 Days Forecast
         </button>
@@ -105,6 +106,7 @@ export default function Frame() {
         <button
           className="rounded-full bg-sky-500/75 hover:bg-sky-500/100 px-5 py-3 my-5"
           onClick={isLoadingHandler}
+          style={{userSelect:"none"}}
         >
           Close The Forecast
         </button>

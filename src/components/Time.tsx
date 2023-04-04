@@ -10,7 +10,7 @@ function Time() {
   }, []);
   return (
     <div className="flex justify-center">
-      <p className="text-2xl oldstyle-nums subpixel-antialiased lining-nums my-10">
+      <p className="text-2xl oldstyle-nums subpixel-antialiased lining-nums my-10" style={{userSelect:"none"}}>
         {time.toLocaleTimeString()}
       </p>
     </div>
