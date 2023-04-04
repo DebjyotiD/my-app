@@ -118,19 +118,19 @@ export default function Frame() {
             <div className="flex rounded-lg border-solid border-2 shadow-md border-sky-500 my-5">
               <img src={item.icon} alt="" className="w-20 h-24 my-6" />
               <div className="flex-auto">
-                <p className="font-mono text-base my-12 text-4xl">
+                <p className="font-mono text-base my-7" style={{fontSize:"2em", padding:"1em"}}>
                   {item["avgtemp"]}°C
                 </p>
               </div>
               <div className="flex ">
                 <div className="p-5">
-                  <p className="font-mono text-base mx-7">
+                  <p className="font-mono text-base flex justify-center my-2">
                     It Will Be {item["condition"]} Outside
                   </p>
-                  <p className="font-mono text-base my-3 mx-20">
+                  <p className="font-mono text-base flex justify-center my-2">
                     Humidity:{item["humidity"]}%
                   </p>
-                  <p className="font-mono text-base my-3">
+                  <p className="font-mono text-base flex justify-center my-2">
                     Maximum Wind Speed: {item["maxwind"]} kmph
                   </p>
                 </div>
