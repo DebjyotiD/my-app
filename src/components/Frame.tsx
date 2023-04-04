@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+
 export default function Frame() {
   const [loc, setLoc] = useState<string>();
   const [temp, setTemp] = useState<string>();
@@ -9,6 +10,7 @@ export default function Frame() {
   const [cond, setCond] = useState<string>();
   const [next, setNext] = useState<any[]>([]);
   const [isloading, setIsLoading] = useState<boolean>(false);
+  const [id,setId] = useState<number>(0);
 
   const showResponse = async (
     location: string,
@@ -55,6 +57,7 @@ export default function Frame() {
         let week_data: Array<any> = response.data.forecast["forecastday"].map(
           (item: any) => {
             return {
+              key : item.date_epoch,
               date: item.date,
               avgtemp: item.day.avgtemp_c,
               icon: item.day.condition.icon,
@@ -65,9 +68,8 @@ export default function Frame() {
           }
         );
         setNext(week_data);
-        console.log(next);
       })
-      .catch();
+      .catch((error)=>setNext(error.message));
   }
   const forecastHandler = () => {
     setIsLoading(true);
@@ -109,7 +111,7 @@ export default function Frame() {
       )}
       <div>
         {next.map((item) => (
-          <div>
+          <div key={item["key"]}>
             <p className="font-mono text-base text-3xl w-full">
              Forecast on {item["date"]} :
             </p>

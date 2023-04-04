@@ -5,33 +5,10 @@ function Search() {
   const [area, setArea] = useState<string>("");
   const [lat, setLat] = useState<any>();
   const [long, setLong] = useState<any>();
-  const [shoulduse, setShouldUse] = useState<boolean>(false);
-
-  /*function fetchLatLong(){
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLat(position.coords.latitude);
-      setLong(position.coords.longitude);
-    });
-    fetchAreaData();
-  }
-  
-
-  function fetchAreaData() {
-    const getData = axios
-      .get(
-        `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=86bddd28d11952dae3e046a9dbe36918`
-      )
-      .then((response) => {
-        const fetchData: Array<any> = response.data;
-        console.log(fetchData[0].name,"firstCall");
-        setArea(fetchData[0].name);
-      })
-      .catch((error) => console.log(error.message));
-  } */
 
   useEffect(() => {
     const getGeoData = setTimeout(() => {
-      if (area.length>0) {
+      if (area.length > 0) {
         axios
           .get(
             `https://api.openweathermap.org/geo/1.0/direct?q=${area}&appid=86bddd28d11952dae3e046a9dbe36918`
@@ -40,7 +17,7 @@ function Search() {
             const fetchedData: Array<any> = response.data;
             setLat(fetchedData[0].lat);
             setLong(fetchedData[0].lon);
-            console.log(fetchedData[0].lat,fetchedData[0].lon );
+            console.log(fetchedData[0].lat, fetchedData[0].lon);
           })
           .catch((error) => {
             console.log(error.message);
