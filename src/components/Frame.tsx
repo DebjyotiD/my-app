@@ -10,7 +10,6 @@ export default function Frame() {
   const [cond, setCond] = useState<string>();
   const [next, setNext] = useState<any[]>([]);
   const [isloading, setIsLoading] = useState<boolean>(false);
-  const [id,setId] = useState<number>(0);
 
   const showResponse = async (
     location: string,
