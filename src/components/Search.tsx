@@ -7,9 +7,12 @@ function Search() {
   const [long, setLong] = useState<number>();
   const [show, setShow] = useState<boolean>(false);
   const [err, setErr] = useState<string>("");
-  const [icon, setIcon] = useState<string>("");
+  const [icon, setIcon] = useState<string>(
+    "https://freesvg.org/img/1488160651.png"
+  );
   const [cond, setCond] = useState<string>();
-  const [temp, setTemp] = useState<string>();
+  const [temp, setTemp] = useState<string>("FETCHING..");
+  const [match, setMatch] = useState<string>("");
 
   function showData() {
     axios
@@ -17,9 +20,15 @@ function Search() {
         `https://api.weatherapi.com/v1/current.json?key=eea7fd6ff63e4602977155650230104&q=${lat},${long}`
       )
       .then((response) => {
-        setTemp(response.data.current.temp_c);
-        setCond(response.data.current.condition.text);
-        setIcon(response.data.current.condition.icon);
+        
+          setTemp(response.data.current.temp_c);
+          setCond(response.data.current.condition.text);
+          setIcon(response.data.current.condition.icon);
+       if(match!==area){
+          setTemp("FETCHING..");
+          setCond("");
+          setIcon("https://freesvg.org/img/1488160651.png");
+       }
       })
       .catch((error) => {
         setErr(error);
@@ -29,8 +38,9 @@ function Search() {
 
   useEffect(() => {
     const getGeoData = setTimeout(() => {
-      if (area.length > 0) {
+      if (area.length > 2) {
         setShow(true);
+
         axios
           .get(
             `https://api.openweathermap.org/geo/1.0/direct?q=${area}&appid=86bddd28d11952dae3e046a9dbe36918`
@@ -39,6 +49,7 @@ function Search() {
             const fetchedData: Array<any> = response.data;
             setLat(fetchedData[0].lat);
             setLong(fetchedData[0].lon);
+            setMatch(area);
           })
           .catch((error) => {
             setErr(error);
