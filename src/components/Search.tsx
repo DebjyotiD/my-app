@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 function Search() {
   const [area, setArea] = useState<string>("");
-  const [lat, setLat] = useState<number>();
+  const [lat, setLat] = useState<number>(0);
   const [long, setLong] = useState<number>();
   const [show, setShow] = useState<boolean>(false);
   const [err, setErr] = useState<string>("");
@@ -15,25 +15,28 @@ function Search() {
   const [match, setMatch] = useState<string>("");
 
   function showData() {
-    axios
-      .get(
-        `https://api.weatherapi.com/v1/current.json?key=eea7fd6ff63e4602977155650230104&q=${lat},${long}`
-      )
-      .then((response) => {
-        
+    if (lat > 0) {
+      axios
+        .get(
+          `https://api.weatherapi.com/v1/current.json?key=eea7fd6ff63e4602977155650230104&q=${lat},${long}`
+        )
+        .then((response) => {
           setTemp(response.data.current.temp_c);
           setCond(response.data.current.condition.text);
           setIcon(response.data.current.condition.icon);
-       if(match!==area){
-          setTemp("FETCHING..");
-          setCond("");
-          setIcon("https://freesvg.org/img/1488160651.png");
-       }
-      })
-      .catch((error) => {
-        setErr(error);
-        setShow(false);
-      });
+          setLat(0);
+          setLong(0);
+          if (match !== area) {
+            setTemp("FETCHING..");
+            setCond("");
+            setIcon("https://freesvg.org/img/1488160651.png");
+          }
+        })
+        .catch((error) => {
+          setErr(error);
+          setShow(false);
+        });
+    }
   }
 
   useEffect(() => {
@@ -62,7 +65,7 @@ function Search() {
     return () => clearTimeout(getGeoData);
   }, [area]);
 
-  if (lat) {
+  if (lat && area.length > 2) {
     showData();
   }
 
