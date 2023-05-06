@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 const Abc: React.FC = () => {
@@ -6,6 +6,7 @@ const Abc: React.FC = () => {
   const [flag, setFlag] = useState(false);
   const [and, setAnd] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [opacity,setOpacity] = useState(0);
   var message;
   var rmessage;
   var audio;
@@ -40,14 +41,14 @@ const Abc: React.FC = () => {
         className=" flex justify-left w-16 md:w-32 lg:w-48 transition duration-300 ease-in-out hover:scale-110 rounded-lg"
       />
       <div className="flex justify-center px-10">
-        <p className="text-xl whitespace-pre-line">
+        <p className="text-lg whitespace-pre-line subpixel-antialiased">
           Me know you look good in any and every way shape or form. But me dont
           like it when you get mad or me disturb your mental peace.
         </p>
         <div className="relative">
           <button
             onClick={nextEventHandler}
-            className="absolute bottom-0 right-0 bg-blue-500 hover:bg-blue-700 rounded px-10 py-2"
+            className="absolute bottom-0 right-0 bg-blue-500 hover:bg-blue-700 rounded px-10 py-2 transition duration-300 hover:scale-110"
           >
             Next
           </button>
@@ -64,14 +65,14 @@ const Abc: React.FC = () => {
         className=" flex justify-left w-16 md:w-32 lg:w-48 transition duration-300 ease-in-out hover:scale-110 rounded-lg"
       />
       <div className="flex justify-center px-10">
-        <p className="text-xl whitespace-pre-line">
+        <p className="text-lg whitespace-pre-line subpixel-antialiased">
           So stay happy bembi, and dont worry to much cause you are the most
           precious thing in me life
         </p>
         <div className="relative">
           <button
             onClick={andEventHandler}
-            className="absolute bottom-0 right-0 bg-blue-500 hover:bg-blue-700 rounded px-10 py-2"
+            className="absolute bottom-0 right-0 bg-blue-500 hover:bg-blue-700 rounded px-10 py-2 transition duration-300 hover:scale-110" 
           >
             And
           </button>
@@ -88,7 +89,7 @@ const Abc: React.FC = () => {
         className=" flex justify-left w-16 md:w-32 lg:w-48 transition duration-300 ease-in-out hover:scale-110 rounded-lg"
       />
       <div className="flex justify-center px-10">
-        <p className="text-xl whitespace-pre-line">DunDunie Loves You A Lot</p>
+        <p className="text-xl whitespace-pre-line subpixel-antialiased">DunDunie Loves You A Lot </p>
       </div>
       <div className="relative">
           <audio src="meitennu.mp3" controls={true} autoPlay={isPlaying}className="absolute bottom-0 right-0  rounded-lg"/>
@@ -105,7 +106,7 @@ const Abc: React.FC = () => {
     <div className="flex justify-center items-center h-screen bg-blue-200">
       {!flag && !mess && !and && (
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 hover:scale-150"
           onClick={buttonHandler}
         >
           Click Here For Surprise(s?)
