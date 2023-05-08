@@ -12,15 +12,11 @@ import Abc from "./components/Abc";
 function App() {
   return (
   
-     /* <div className="container mx-auto grid justify-items-center box-border h-50 w-100 bg-">
+     <div className="container mx-auto grid justify-items-center box-border h-50 w-100 bg-">
         <Search />
         <Time />
         <Frame />
         <Footer />
-      </div>*/
-
-      <div>
-       <Abc />
       </div>
 
   );
