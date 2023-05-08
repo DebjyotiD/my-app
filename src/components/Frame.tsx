@@ -98,7 +98,7 @@ export default function Frame() {
           onClick={forecastHandler}
           style={{userSelect:"none"}}
         >
-          See Next 7 Days Forecast
+          See Next 3 Days Forecast
         </button>
       )}
       {isloading && (
